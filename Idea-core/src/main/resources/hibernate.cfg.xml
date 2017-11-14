@@ -1,0 +1,29 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+
+        <property name="hibernate.dialect">hibernate.dialect.JSONBPostgreSQLDialect</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+
+        <!-- Connection settings -->
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:6844/root</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">root</property>
+
+        <!--  <property name="hibernate.enable_lazy_load_no_trans">true</property> -->
+        <property name="hibernate.archive.autodetection">class</property>
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">true</property>
+
+        <mapping package="entity"/>
+        <mapping class="entity.impl.Attach"/>
+        <mapping class="entity.impl.Event"/>
+        <mapping class="entity.impl.Node"/>
+        <mapping class="entity.impl.Source"/>
+        <mapping class="entity.impl.Target"/>
+
+    </session-factory>
+</hibernate-configuration>
