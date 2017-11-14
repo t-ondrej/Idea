@@ -14,7 +14,7 @@ public class Attach implements IEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IDATTACH")
+    @Column(name = "\"IDATTACH\"", unique = true)
     private Long id;
 
     @Column(name = "\"CONTENT\"")

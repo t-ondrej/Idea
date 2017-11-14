@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.hibernate.HibernateException;
-import org.hibernate.engine.spi.SessionImplementor;
+import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.usertype.UserType;
 import org.postgresql.util.PGobject;
 
@@ -53,7 +53,7 @@ public class JsonStringArrayUserType extends CollectionUserType {
 
     @Override
     public Object nullSafeGet(ResultSet resultSet, String[] names,
-                              SessionImplementor session, Object owner)
+    SharedSessionContractImplementor session, Object owner)
             throws HibernateException, SQLException {
         try {
             final String json = resultSet.getString(names[0]);
@@ -69,7 +69,7 @@ public class JsonStringArrayUserType extends CollectionUserType {
 
     @Override
     public void nullSafeSet(PreparedStatement st, Object value, int index,
-                            SessionImplementor session) throws HibernateException, SQLException {
+    SharedSessionContractImplementor session) throws HibernateException, SQLException {
         try {
             final String json = value == null
                     ? null

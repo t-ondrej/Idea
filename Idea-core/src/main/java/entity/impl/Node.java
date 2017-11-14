@@ -17,7 +17,7 @@ public class Node implements IEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IDNODE", unique = true)
+    @Column(name = "\"IDNODE\"", unique = true)
     private Long id;
 
     @Column(name = "\"AGGRWIN\"")

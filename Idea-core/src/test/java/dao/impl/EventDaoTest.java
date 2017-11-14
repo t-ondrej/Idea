@@ -4,7 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import dto.EventDto;
 import entity.impl.Event;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import utils.HibernateUtils;
 import utils.IdeaModelMapper;
 
 import java.util.ArrayList;
@@ -17,16 +19,22 @@ import static org.junit.Assert.*;
  */
 public class EventDaoTest {
 
-    private ObjectMapper objectMapper;
+    private static ObjectMapper objectMapper;
 
-    private List<Event> events;
+    private static List<Event> events;
 
-    private EventDao eventDao;
+    private static EventDao eventDao;
+
+    @BeforeClass
+    public static void prepareEnviroment() {
+        objectMapper = new ObjectMapper();
+
+        eventDao = new EventDao();
+        eventDao.setSessionFactory(HibernateUtils.getSessionFactory());
+    }
 
     @Before
     public void setUp() throws Exception {
-        objectMapper = new ObjectMapper();
-
         EventDto firstEventDto = objectMapper.readValue("{\"ID\": \"0916d11d-06da-4573-88c9-ff4d6051487f\", " +
                 "\"Node\": [{\"SW\": [\"Kippo\"], \"Name\": \"cz.tul.ward.kippo\", \"Type\": [\"Connection\", " +
                 "\"Honeypot\", \"Recon\"], \"AggrWin\": \"00:05:00\"}], \"Note\": \"SSH login attempt\", " +
@@ -42,14 +50,11 @@ public class EventDaoTest {
                 "[\"Attempt.Login\"], \"ConnCount\": 3, \"DetectTime\": \"2016-09-30T23:59:09+02:00\", \"WinEndTime\": " +
                 "\"2016-10-01T00:00:01.318036+02:00\", \"WinStartTime\": \"2016-09-30T23:55:01.318048+02:00\"}", EventDto.class);
 
-        events = new ArrayList<>();
-
         IdeaModelMapper ideaModelMapper = new IdeaModelMapper();
 
+        events = new ArrayList<>();
         events.add(ideaModelMapper.map(firstEventDto, Event.class));
         events.add(ideaModelMapper.map(secondEventDto, Event.class));
-
-        eventDao = new EventDao();
     }
 
     @Test
@@ -64,7 +69,6 @@ public class EventDaoTest {
     public void testRemoveSecondEvent() {
         Event event = events.get(0);
         event.setId("1");
-
         eventDao.merge(event);
         assertNotNull(eventDao.findById(event.getId()));
         eventDao.remove(event);
@@ -75,7 +79,7 @@ public class EventDaoTest {
     public void testFindByIdFirstEvent() {
         Event event = events.get(0);
         eventDao.merge(event);
-        assertEquals(eventDao.findById(event.getId()).getId(), event.getId());
+        assertNotNull(eventDao.findById(event.getId()));
     }
 
     @Test

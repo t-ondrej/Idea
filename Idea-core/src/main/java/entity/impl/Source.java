@@ -16,7 +16,7 @@ public class Source implements IEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IDSOURCE")
+    @Column(name = "\"IDSOURCE\"", unique = true)
     private Long id;
 
     @Column(name = "\"ANONYMISED\"")

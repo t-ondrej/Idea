@@ -16,7 +16,7 @@ public class Target implements IEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IDTARGET")
+    @Column(name = "\"IDTARGET\"", unique = true)
     private Long id;
 
     @Column(name = "\"ANONYMISED\"")

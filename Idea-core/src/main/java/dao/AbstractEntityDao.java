@@ -31,7 +31,6 @@ public abstract class AbstractEntityDao<T extends IEntity> implements IEntityDao
         this.sessionFactory = sessionFactory;
     }
 
-    @Override
     public List<T> getAll() {
         logger.info("Getting all from " + tableName);
 
@@ -44,8 +43,7 @@ public abstract class AbstractEntityDao<T extends IEntity> implements IEntityDao
         return result;
     }
 
-    @Override
-    public void merge(final T entity) {
+    public void merge(T entity) {
         logger.info("Merging " + entity.toString());
 
         Session session = sessionFactory.getCurrentSession();
@@ -55,20 +53,17 @@ public abstract class AbstractEntityDao<T extends IEntity> implements IEntityDao
         session.getTransaction().commit();
     }
 
-    @Override
-    public void remove(final T entity) {
+    public void remove(T entity) {
         logger.info("Removing " + entity.toString());
 
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
 
-        session.delete(entity);
-        //session.remove(entity);
+        session.remove(entity);
         session.getTransaction().commit();
     }
 
-    @Override
-    public T findById(final Long id) {
+    public T findById(Long id) {
         logger.info("Trying to find " + tableName + " with id: " + id);
 
         Session session = sessionFactory.getCurrentSession();
@@ -80,9 +75,8 @@ public abstract class AbstractEntityDao<T extends IEntity> implements IEntityDao
         return result;
     }
 
-    @Override
-    public T findById(final String id) {
-        logger.info("Finding " + tableName + " with id: " + id);
+    public T findById(String id) {
+        logger.info("Trying to find " + tableName + " with id: " + id);
 
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
