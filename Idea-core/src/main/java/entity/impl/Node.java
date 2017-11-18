@@ -1,5 +1,7 @@
 package entity.impl;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import entity.IEntity;
 import org.hibernate.annotations.Type;
 
@@ -20,27 +22,32 @@ public class Node implements IEntity {
     @Column(name = "\"IDNODE\"", unique = true)
     private Long id;
 
+    @JsonProperty("AggrWin")
     @Column(name = "\"AGGRWIN\"")
     private Time aggrWin;
 
+    @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "\"EVENTID\"")
+    @JoinColumn(name = "\"EVENTID\"", referencedColumnName = "\"IDEVENT\"")
     private Event event;
 
+    @JsonProperty("Name")
     @Column(name = "\"NAME\"")
     private String name;
 
+    @JsonProperty("Note")
     @Column(name = "\"NOTE\"")
     private String note;
 
+    @JsonProperty("SW")
     @Type(type = "jsonStringArray")
     @Column(name = "\"SW\"")
     private List<String> sW;
 
+    @JsonProperty("Type")
     @Type(type = "jsonStringArray")
     @Column(name = "\"TYPE\"")
     private List<String> type = new ArrayList<>();
-
 
     public Long getId() {
         return id;

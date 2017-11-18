@@ -1,5 +1,7 @@
 package entity.impl;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import entity.IEntity;
 import org.hibernate.annotations.Type;
 
@@ -16,89 +18,119 @@ import java.util.List;
 @Table(name = "Event", schema = "events")
 public class Event implements IEntity {
 
+    @JsonProperty("ID")
     @Id
     @Column(name = "\"IDEVENT\"")
     private String id;
 
+    @JsonProperty("AggrID")
     @Type(type = "jsonStringArray")
     @Column(name = "\"AGGRID\"")
     private String aggrID;
 
+    @JsonProperty("AltNames")
     @Type(type = "jsonStringArray")
     @Column(name = "\"ALTNAMES\"")
     private String altnames;
 
+    @JsonProperty("ByteCount")
     @Column(name = "\"BYTECOUNT\"")
     private int byteCount;
 
+    @JsonProperty("Category")
     @Type(type = "jsonStringArray")
     @Column(name = "\"CATEGORY\"")
     private List<String> category;
 
+    @JsonProperty("CeaseTime")
     @Column(name = "\"CEASETIME\"")
     private Date ceaseTime;
 
+    @JsonProperty("Confidence")
     @Column(name = "\"CONFIDENCE\"")
     private int confidence;
 
+    @JsonProperty("ConnCount")
     @Column(name = "\"CONNCOUNT\"")
     private int connCount;
 
+    @JsonProperty("CorrelId")
     @Type(type = "jsonStringArray")
     @Column(name = "\"CORRELID\"")
     private String correlID;
 
+    @JsonProperty("CreateTime")
     @Column(name = "\"CREATETIME\"")
     private Date createTime;
 
+    @JsonProperty("Description")
     @Column(name = "\"DESCRIPTION\"")
     private String description;
 
+    @JsonProperty("DetectTime")
     @Column(name = "\"DETECTTIME\"")
     private Date detectTime;
 
+    @JsonProperty("EventTime")
     @Column(name = "\"EVENTTIME\"")
     private Date eventTime;
 
+    @JsonProperty("FlowCount")
     @Column(name = "\"FLOWCOUNT\"")
     private int flowCount;
 
+    @JsonProperty("Format")
     @Column(name = "\"FORMAT\"")
     private String format;
 
+    @JsonProperty("Note")
     @Column(name = "\"NOTE\"")
     private String note;
 
+    @JsonProperty("PacketCount")
     @Column(name = "\"PACKETCOUNT\"")
     private int packetCount;
 
+    @JsonProperty("PredID")
     @Type(type = "jsonStringArray")
     @Column(name = "\"PREDID\"")
     private String predID;
 
+    @JsonProperty("Ref")
     @Type(type = "jsonStringArray")
     @Column(name = "\"REF\"")
     private String ref;
 
+    @JsonProperty("RelID")
     @Type(type = "jsonStringArray")
     @Column(name = "\"RELID\"")
     private String relID;
 
+    @JsonProperty("WinEndTime")
     @Column(name = "\"WINENDTIME\"")
     private Date winEndTime;
 
+    @JsonProperty("WinStartTime")
     @Column(name = "\"WINSTARTTIME\"")
     private Date winStartTime;
 
+    @JsonProperty("Attach")
+    @JsonManagedReference
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     private List<Attach> attachs = new ArrayList<>();
 
+    @JsonProperty("Node")
+    @JsonManagedReference
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     private List<Node> nodes = new ArrayList<>();
 
+    @JsonProperty("Source")
+    @JsonManagedReference
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     private List<Source> sources = new ArrayList<>();
 
+    @JsonProperty("Target")
+    @JsonManagedReference
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     private List<Target> targets = new ArrayList<>();
 

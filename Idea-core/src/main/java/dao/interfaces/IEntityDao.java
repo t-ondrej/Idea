@@ -1,4 +1,4 @@
-package dao;
+package dao.interfaces;
 
 import entity.IEntity;
 
@@ -7,15 +7,13 @@ import java.util.List;
 /**
  * Created by Tomas on 8.11.2017.
  */
-public interface IEntityDao<T extends IEntity> {
+public interface IEntityDao<T extends IEntity, ID> {
 
-    List getAll();
+    List<T> getAll();
 
     void merge(T entity);
 
     void remove(T entity);
 
-    T findById(Long id);
-
-    T findById(String id);
+    T findById(ID id);
 }

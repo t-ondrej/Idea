@@ -1,5 +1,7 @@
 package entity.impl;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import entity.IEntity;
 import org.hibernate.annotations.Type;
 
@@ -19,77 +21,97 @@ public class Source implements IEntity {
     @Column(name = "\"IDSOURCE\"", unique = true)
     private Long id;
 
+    @JsonProperty("Anonymised")
     @Column(name = "\"ANONYMISED\"")
     private Boolean anonymised;
 
+    @JsonProperty("ASN")
     @Type(type = "jsonStringArray")
     @Column(name = "\"ASN\"")
     private List<String> asn;
 
+    @JsonProperty("AttachHand")
     @Type(type = "jsonStringArray")
     @Column(name = "\"ATTACHHAND\"")
     private List<String> attachHand;
 
+    @JsonProperty("Description")
     @Column(name = "\"DESCRIPTION\"")
     private String description;
 
+    @JsonProperty("Email")
     @Type(type = "jsonStringArray")
     @Column(name = "\"EMAIL\"")
     private List<String> email;
 
+    @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "\"EVENTID\"")
+    @JoinColumn(name = "\"EVENTID\"", referencedColumnName = "\"IDEVENT\"")
     private Event event;
 
+    @JsonProperty("Hostname")
     @Type(type = "jsonStringArray")
     @Column(name = "\"HOSTNAME\"")
     private List<String> hostname;
 
+    @JsonProperty("Imprecise")
     @Column(name = "\"IMPRECISE\"")
     private Boolean imprecise;
 
+    @JsonProperty("IP4")
     @Type(type = "jsonStringArray")
     @Column(name = "\"IP4\"")
     private List<String> iP4;
 
+    @JsonProperty("IP6")
     @Type(type = "jsonStringArray")
     @Column(name = "\"IP6\"")
     private List<String> iP6;
 
+    @JsonProperty("MAC")
     @Type(type = "jsonStringArray")
     @Column(name = "\"MAC\"")
     private List<String> mAC;
 
+    @JsonProperty("Netname")
     @Type(type = "jsonStringArray")
     @Column(name = "\"NETNAME\"")
     private List<String> netname;
 
+    @JsonProperty("Note")
     @Column(name = "\"NOTE\"")
     private String note;
 
+    @JsonProperty("Port")
     @Type(type = "jsonStringArray")
     @Column(name = "\"PORT\"")
     private List<String> port;
 
+    @JsonProperty("Proto")
     @Type(type = "jsonStringArray")
     @Column(name = "\"PROTO\"")
     private List<String> proto;
 
+    @JsonProperty("Ref")
     @Type(type = "jsonStringArray")
     @Column(name = "\"REF\"")
     private List<String> ref;
 
+    @JsonProperty("Router")
     @Type(type = "jsonStringArray")
     @Column(name = "\"ROUTER\"")
     private List<String> router;
 
+    @JsonProperty("Spoofed")
     @Column(name = "\"SPOOFED\"")
     private Boolean spoofed;
 
+    @JsonProperty("Type")
     @Type(type = "jsonStringArray")
     @Column(name = "\"TYPE\"")
     private List<String> type;
 
+    @JsonProperty("URL")
     @Type(type = "jsonStringArray")
     @Column(name = "\"URL\"")
     private List<String> url;

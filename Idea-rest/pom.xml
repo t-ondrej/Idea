@@ -6,11 +6,30 @@
 
     <groupId>sk.upjs.ics</groupId>
     <artifactId>Idea-rest</artifactId>
-    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>../Idea-ui</module>
-    </modules>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.8.RELEASE</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>sk.upjs.ics</groupId>
+            <artifactId>Idea-core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.2.10.Final</version>
+        </dependency>
+    </dependencies>
 
 </project>

@@ -1,6 +1,7 @@
 package entity.impl;
 
-import dto.AttachDto;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import entity.IEntity;
 import org.hibernate.annotations.Type;
 
@@ -17,51 +18,65 @@ public class Attach implements IEntity {
     @Column(name = "\"IDATTACH\"", unique = true)
     private Long id;
 
+    @JsonProperty("Content")
     @Column(name = "\"CONTENT\"")
     private String content;
 
+    @JsonProperty("ContentCharset")
     @Column(name = "\"CONTENTCHARSET\"")
     private String contentCharset;
 
+    @JsonProperty("ContentEncoding")
     @Column(name = "\"CONTENTENCODING\"")
-    private AttachDto.ContentEncoding contentEncoding;
+    private String contentEncoding;
 
+    @JsonProperty("ContentID")
     @Type(type = "jsonStringArray")
     @Column(name = "\"CONTENTID\"")
     private List<String> contentID;
 
+    @JsonProperty("ContentType")
     @Column(name = "\"CONTENTTYPE\"")
     private String contentType;
 
+    @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "\"EVENTID\"")
+    @JoinColumn(name = "\"EVENTID\"", referencedColumnName = "\"IDEVENT\"")
     private Event event;
 
+    @JsonProperty("ExternalUri")
     @Type(type = "jsonStringArray")
     @Column(name = "\"EXTERNALURI\"")
     private List<String> externalUri;
 
+    @JsonProperty("FileName")
     @Type(type = "jsonStringArray")
     @Column(name = "\"FILENAME\"")
     private List<String> fileName;
 
+    @JsonProperty("Handle")
     @Column(name = "\"HANDLE\"")
     private String handle;
 
+    @JsonProperty("Hash")
     @Type(type = "jsonStringArray")
     @Column(name = "\"HASH\"")
     private List<URI> hash;
 
+    @JsonProperty("Note")
     @Column(name = "\"NOTE\"")
     private String note;
 
+    @JsonProperty("Ref")
     @Type(type = "jsonStringArray")
     @Column(name = "\"REF\"")
     private List<URI> ref;
 
+    @JsonProperty("Size")
     @Column(name = "\"SIZE\"")
     private Integer size;
 
+    @JsonProperty("Type")
     @Type(type = "jsonStringArray")
     @Column(name = "\"TYPE\"")
     private List<String> type;
@@ -90,11 +105,11 @@ public class Attach implements IEntity {
         this.contentCharset = contentCharset;
     }
 
-    public AttachDto.ContentEncoding getContentEncoding() {
+    public String getContentEncoding() {
         return contentEncoding;
     }
 
-    public void setContentEncoding(AttachDto.ContentEncoding contentEncoding) {
+    public void setContentEncoding(String contentEncoding) {
         this.contentEncoding = contentEncoding;
     }
 

@@ -1,16 +1,22 @@
 package dao;
 
+import dao.interfaces.IEntityDao;
 import entity.IEntity;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.logging.Logger;
 
 /**
  * Created by Tomas on 8.11.2017.
  */
-public abstract class AbstractEntityDao<T extends IEntity> implements IEntityDao<T> {
+@Transactional
+@Repository
+public abstract class AbstractEntityDao<T extends IEntity, ID> implements IEntityDao<T, ID> {
 
     private String tableName;
 
@@ -18,7 +24,8 @@ public abstract class AbstractEntityDao<T extends IEntity> implements IEntityDao
 
     private Logger logger;
 
-    private SessionFactory sessionFactory;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public AbstractEntityDao(String tableName, Class<T> persistentClass) {
         this.tableName = tableName;
@@ -27,18 +34,11 @@ public abstract class AbstractEntityDao<T extends IEntity> implements IEntityDao
         logger = Logger.getLogger(persistentClass.getName());
     }
 
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
     public List<T> getAll() {
         logger.info("Getting all from " + tableName);
 
-        Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
-
-        List<T> result = session.createQuery("from " + tableName).list();
-        session.getTransaction().commit();
+        TypedQuery<T> query = entityManager.createQuery("from " + tableName, persistentClass);
+        List<T> result = query.getResultList();
 
         return result;
     }
@@ -46,44 +46,19 @@ public abstract class AbstractEntityDao<T extends IEntity> implements IEntityDao
     public void merge(T entity) {
         logger.info("Merging " + entity.toString());
 
-        Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
-
-        session.saveOrUpdate(entity);
-        session.getTransaction().commit();
+        entityManager.persist(entity);
     }
 
     public void remove(T entity) {
         logger.info("Removing " + entity.toString());
 
-        Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
-
-        session.remove(entity);
-        session.getTransaction().commit();
+        entityManager.remove(entity);
     }
 
-    public T findById(Long id) {
+    public T findById(ID id) {
         logger.info("Trying to find " + tableName + " with id: " + id);
 
-        Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
-
-        T result = (T) session.get(this.persistentClass, id);
-        session.getTransaction().commit();
-
-        return result;
-    }
-
-    public T findById(String id) {
-        logger.info("Trying to find " + tableName + " with id: " + id);
-
-        Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
-
-        T result = (T) session.get(this.persistentClass, id);
-        session.getTransaction().commit();
-
+        T result = entityManager.find(this.persistentClass, id);
         return result;
     }
 }
