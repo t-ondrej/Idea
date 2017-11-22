@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Transactional
 @Repository
-public class NodeDao extends AbstractEntityDao<Node, Long> implements INodeDao {
+public class NodeDao extends AbstractDao<Node, Long> implements INodeDao {
 
     public NodeDao() {
         super("Node", Node.class);

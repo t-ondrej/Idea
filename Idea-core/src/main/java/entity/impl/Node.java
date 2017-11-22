@@ -14,7 +14,7 @@ import java.util.List;
  * Created by Tomas on 8.11.2017.
  */
 @Entity
-@Table(name = "Node", schema = "events")
+@Table(name = "Node")
 public class Node implements IEntity {
 
     @Id

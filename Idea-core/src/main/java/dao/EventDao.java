@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Transactional
 @Repository
-public class EventDao extends AbstractEntityDao<Event, String> implements IEventDao {
+public class EventDao extends AbstractDao<Event, String> implements IEventDao {
 
     public EventDao() {
         super("Event", Event.class);

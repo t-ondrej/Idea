@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Transactional
 @Repository
-public class TargetDao extends AbstractEntityDao<Target, Long> implements ITargetDao {
+public class TargetDao extends AbstractDao<Target, Long> implements ITargetDao {
 
     public TargetDao() {
         super("Target", Target.class);

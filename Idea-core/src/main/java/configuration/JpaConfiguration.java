@@ -1,7 +1,8 @@
+package configuration;
+
 import com.jcraft.jsch.JSch;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
@@ -13,19 +14,14 @@ import java.util.Properties;
 /**
  * Created by Tomas on 18.11.2017.
  */
-@Configuration
-public class JpaConfiguration {
+public abstract class JpaConfiguration {
 
     static {
         setPortForwarding();
     }
 
     @Bean
-    public LocalEntityManagerFactoryBean entityManagerFactory(){
-        LocalEntityManagerFactoryBean factoryBean = new LocalEntityManagerFactoryBean();
-        factoryBean.setPersistenceUnitName("prod");
-        return factoryBean;
-    }
+    public abstract LocalEntityManagerFactoryBean entityManagerFactory();
 
     @Bean
     JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
@@ -35,16 +31,15 @@ public class JpaConfiguration {
     }
 
     @Bean
-    @Primary
-    public DataSource getDataSource() {
-        return DataSourceBuilder
+    public abstract DataSource getDataSource(); //{
+    /*    return DataSourceBuilder
                 .create()
                 .driverClassName("org.postgresql.Driver")
                 .url("jdbc:postgresql://localhost:6844/root")
                 .username("root")
                 .password("root")
                 .build();
-    }
+    }*/
 
     private static void setPortForwarding() {
         try {

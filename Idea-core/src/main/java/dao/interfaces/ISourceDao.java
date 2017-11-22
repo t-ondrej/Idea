@@ -5,5 +5,5 @@ import entity.impl.Source;
 /**
  * Created by Tomas on 18.11.2017.
  */
-public interface ISourceDao extends IEntityDao<Source, Long> {
+public interface ISourceDao extends IDao<Source, Long> {
 }

@@ -10,7 +10,7 @@ import java.net.URI;
 import java.util.List;
 
 @Entity
-@Table(name = "Attach", schema = "events")
+@Table(name = "Attach")
 public class Attach implements IEntity {
 
     @Id

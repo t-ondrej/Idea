@@ -13,7 +13,7 @@ import java.util.List;
  */
 
 @Entity
-@Table(name = "Target", schema = "events")
+@Table(name = "Target")
 public class Target implements IEntity {
 
     @Id

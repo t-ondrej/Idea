@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by Tomas on 8.11.2017.
  */
-public interface IEntityDao<T extends IEntity, ID> {
+public interface IDao<T extends IEntity, ID> {
 
     List<T> getAll();
 

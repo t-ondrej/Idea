@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Transactional
 @Repository
-public class AttachDao extends AbstractEntityDao<Attach, Long> implements IAttachDao {
+public class AttachDao extends AbstractDao<Attach, Long> implements IAttachDao {
 
     public AttachDao() {
         super("Attach", Attach.class);

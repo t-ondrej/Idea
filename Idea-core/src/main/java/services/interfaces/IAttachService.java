@@ -1,6 +1,5 @@
 package services.interfaces;
 
-import dao.interfaces.IEntityDao;
 import entity.impl.Attach;
 
 /**

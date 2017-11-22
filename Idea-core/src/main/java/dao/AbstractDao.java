@@ -1,6 +1,6 @@
 package dao;
 
-import dao.interfaces.IEntityDao;
+import dao.interfaces.IDao;
 import entity.IEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  */
 @Transactional
 @Repository
-public abstract class AbstractEntityDao<T extends IEntity, ID> implements IEntityDao<T, ID> {
+public abstract class AbstractDao<T extends IEntity, ID> implements IDao<T, ID> {
 
     private String tableName;
 
@@ -27,7 +27,7 @@ public abstract class AbstractEntityDao<T extends IEntity, ID> implements IEntit
     @PersistenceContext
     private EntityManager entityManager;
 
-    public AbstractEntityDao(String tableName, Class<T> persistentClass) {
+    public AbstractDao(String tableName, Class<T> persistentClass) {
         this.tableName = tableName;
         this.persistentClass = persistentClass;
 
@@ -45,20 +45,18 @@ public abstract class AbstractEntityDao<T extends IEntity, ID> implements IEntit
 
     public void merge(T entity) {
         logger.info("Merging " + entity.toString());
-
         entityManager.persist(entity);
     }
 
     public void remove(T entity) {
         logger.info("Removing " + entity.toString());
-
         entityManager.remove(entity);
     }
 
     public T findById(ID id) {
         logger.info("Trying to find " + tableName + " with id: " + id);
-
         T result = entityManager.find(this.persistentClass, id);
+
         return result;
     }
 }

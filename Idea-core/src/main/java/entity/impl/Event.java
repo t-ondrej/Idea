@@ -15,7 +15,7 @@ import java.util.List;
  */
 
 @Entity
-@Table(name = "Event", schema = "events")
+@Table(name = "Event")
 public class Event implements IEntity {
 
     @JsonProperty("ID")
@@ -26,12 +26,12 @@ public class Event implements IEntity {
     @JsonProperty("AggrID")
     @Type(type = "jsonStringArray")
     @Column(name = "\"AGGRID\"")
-    private String aggrID;
+    private List<String> aggrID;
 
     @JsonProperty("AltNames")
     @Type(type = "jsonStringArray")
     @Column(name = "\"ALTNAMES\"")
-    private String altnames;
+    private List<String> altnames;
 
     @JsonProperty("ByteCount")
     @Column(name = "\"BYTECOUNT\"")
@@ -57,7 +57,7 @@ public class Event implements IEntity {
     @JsonProperty("CorrelId")
     @Type(type = "jsonStringArray")
     @Column(name = "\"CORRELID\"")
-    private String correlID;
+    private List<String> correlID;
 
     @JsonProperty("CreateTime")
     @Column(name = "\"CREATETIME\"")
@@ -94,17 +94,17 @@ public class Event implements IEntity {
     @JsonProperty("PredID")
     @Type(type = "jsonStringArray")
     @Column(name = "\"PREDID\"")
-    private String predID;
+    private List<String> predID;
 
     @JsonProperty("Ref")
     @Type(type = "jsonStringArray")
     @Column(name = "\"REF\"")
-    private String ref;
+    private List<String> ref;
 
     @JsonProperty("RelID")
     @Type(type = "jsonStringArray")
     @Column(name = "\"RELID\"")
-    private String relID;
+    private List<String> relID;
 
     @JsonProperty("WinEndTime")
     @Column(name = "\"WINENDTIME\"")
@@ -142,19 +142,19 @@ public class Event implements IEntity {
         this.id = id;
     }
 
-    public String getAggrID() {
+    public List<String> getAggrID() {
         return aggrID;
     }
 
-    public void setAggrID(String aggrID) {
+    public void setAggrID(List<String> aggrID) {
         this.aggrID = aggrID;
     }
 
-    public String getAltnames() {
+    public List<String> getAltnames() {
         return altnames;
     }
 
-    public void setAltnames(String altnames) {
+    public void setAltnames(List<String> altnames) {
         this.altnames = altnames;
     }
 
@@ -198,11 +198,11 @@ public class Event implements IEntity {
         this.connCount = connCount;
     }
 
-    public String getCorrelID() {
+    public List<String> getCorrelID() {
         return correlID;
     }
 
-    public void setCorrelID(String correlID) {
+    public void setCorrelID(List<String> correlID) {
         this.correlID = correlID;
     }
 
@@ -270,27 +270,27 @@ public class Event implements IEntity {
         this.packetCount = packetCount;
     }
 
-    public String getPredID() {
+    public List<String> getPredID() {
         return predID;
     }
 
-    public void setPredID(String predID) {
+    public void setPredID(List<String> predID) {
         this.predID = predID;
     }
 
-    public String getRef() {
+    public List<String> getRef() {
         return ref;
     }
 
-    public void setRef(String ref) {
+    public void setRef(List<String> ref) {
         this.ref = ref;
     }
 
-    public String getRelID() {
+    public List<String> getRelID() {
         return relID;
     }
 
-    public void setRelID(String relID) {
+    public void setRelID(List<String> relID) {
         this.relID = relID;
     }
 
