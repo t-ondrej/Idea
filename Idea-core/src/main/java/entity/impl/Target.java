@@ -60,17 +60,17 @@ public class Target implements IEntity {
     @JsonProperty("IP4")
     @Type(type = "jsonStringArray")
     @Column(name = "\"IP4\"")
-    private List<String> iP4;
+    private List<String> ip4;
 
     @JsonProperty("IP6")
     @Type(type = "jsonStringArray")
     @Column(name = "\"IP6\"")
-    private List<String> iP6;
+    private List<String> ip6;
 
     @JsonProperty("MAC")
     @Type(type = "jsonStringArray")
     @Column(name = "\"MAC\"")
-    private List<String> mAC;
+    private List<String> mac;
 
     @JsonProperty("Netname")
     @Type(type = "jsonStringArray")
@@ -187,28 +187,28 @@ public class Target implements IEntity {
         this.imprecise = imprecise;
     }
 
-    public List<String> getiP4() {
-        return iP4;
+    public List<String> getiIp4() {
+        return ip4;
     }
 
-    public void setiP4(List<String> iP4) {
-        this.iP4 = iP4;
+    public void setiIp4(List<String> iP4) {
+        this.ip4 = iP4;
     }
 
-    public List<String> getiP6() {
-        return iP6;
+    public List<String> getiIp6() {
+        return ip6;
     }
 
-    public void setiP6(List<String> iP6) {
-        this.iP6 = iP6;
+    public void setiIp6(List<String> iP6) {
+        this.ip6 = iP6;
     }
 
-    public List<String> getmAC() {
-        return mAC;
+    public List<String> getmMac() {
+        return mac;
     }
 
-    public void setmAC(List<String> mAC) {
-        this.mAC = mAC;
+    public void setmMac(List<String> mAC) {
+        this.mac = mAC;
     }
 
     public List<String> getNetname() {

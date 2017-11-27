@@ -4,8 +4,10 @@ import dao.interfaces.ISourceDao;
 import entity.impl.Source;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import predicates.PredicateInfo;
 import services.interfaces.ISourceService;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -39,5 +41,30 @@ public class SourceService implements ISourceService {
     @Override
     public Source findById(Long id) {
         return sourceDao.findById(id);
+    }
+
+    @Override
+    public List<Source> findAll(PredicateInfo[] predicateInfo) {
+        if (predicateInfo == null || predicateInfo.length < 1) {
+            return Collections.emptyList();
+        }
+
+        return null;
+    }
+
+    @Override
+    public List<Source> doFulltextSearch(String target) {
+        if (target == null) {
+            return Collections.emptyList();
+        }
+
+        final String[] colNames = new String[] {
+            "attachHand", "type", "ip6", "netname", "ip4",
+            "url", "port", "hostname", "proto",
+            "description", "mac", "email", "note",
+            "asn", "router", "ref"
+        };
+
+        return sourceDao.doFulltextSearch(colNames, target);
     }
 }

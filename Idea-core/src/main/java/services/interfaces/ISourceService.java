@@ -1,6 +1,5 @@
 package services.interfaces;
 
-import entity.impl.Attach;
 import entity.impl.Source;
 
 /**

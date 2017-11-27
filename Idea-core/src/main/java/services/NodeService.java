@@ -4,8 +4,10 @@ import dao.interfaces.INodeDao;
 import entity.impl.Node;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import predicates.PredicateInfo;
 import services.interfaces.INodeService;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -39,5 +41,27 @@ public class NodeService implements INodeService {
     @Override
     public Node findById(Long id) {
         return nodeDao.findById(id);
+    }
+
+    @Override
+    public List<Node> findAll(PredicateInfo[] predicateInfo) {
+        if (predicateInfo == null || predicateInfo.length < 1) {
+            return Collections.emptyList();
+        }
+
+        return nodeDao.findAll(predicateInfo);
+    }
+
+    @Override
+    public List<Node> doFulltextSearch(String target) {
+        if (target == null) {
+            return Collections.emptyList();
+        }
+
+        final String[] colNames = new String[] {
+            "type", "name", "aggrWin", "sw", "note"
+        };
+
+        return nodeDao.doFulltextSearch(colNames, target);
     }
 }

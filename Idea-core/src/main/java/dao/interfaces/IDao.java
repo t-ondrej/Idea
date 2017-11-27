@@ -1,6 +1,7 @@
 package dao.interfaces;
 
 import entity.IEntity;
+import predicates.PredicateInfo;
 
 import java.util.List;
 
@@ -16,4 +17,8 @@ public interface IDao<T extends IEntity, ID> {
     void remove(T entity);
 
     T findById(ID id);
+
+    List<T> findAll(PredicateInfo[] predicateInfos);
+
+    List<T> doFulltextSearch(String[] colName, String target);
 }

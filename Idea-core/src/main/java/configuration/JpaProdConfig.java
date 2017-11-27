@@ -13,15 +13,14 @@ import javax.sql.DataSource;
  */
 @Configuration
 @ComponentScan({"services", "dao"})
-public class JpaTestConfiguration extends JpaConfiguration {
+public class JpaProdConfig extends JpaConfig {
 
     @Override
     public LocalEntityManagerFactoryBean entityManagerFactory() {
         LocalEntityManagerFactoryBean factoryBean = new LocalEntityManagerFactoryBean();
-        factoryBean.setPersistenceUnitName("test");
+        factoryBean.setPersistenceUnitName("prod");
         return factoryBean;
     }
-
 
     @Bean
     public DataSource getDataSource() {
@@ -29,8 +28,8 @@ public class JpaTestConfiguration extends JpaConfiguration {
                 .create()
                 .driverClassName("org.postgresql.Driver")
                 .url("jdbc:postgresql://localhost:6844/root")
-                .username("selector")
-                .password("selector")
+                .username("root")
+                .password("root")
                 .build();
     }
 }

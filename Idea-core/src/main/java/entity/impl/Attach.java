@@ -33,7 +33,7 @@ public class Attach implements IEntity {
     @JsonProperty("ContentID")
     @Type(type = "jsonStringArray")
     @Column(name = "\"CONTENTID\"")
-    private List<String> contentID;
+    private List<String> contentId;
 
     @JsonProperty("ContentType")
     @Column(name = "\"CONTENTTYPE\"")
@@ -113,12 +113,12 @@ public class Attach implements IEntity {
         this.contentEncoding = contentEncoding;
     }
 
-    public List<String> getContentID() {
-        return contentID;
+    public List<String> getContentId() {
+        return contentId;
     }
 
-    public void setContentID(List<String> contentID) {
-        this.contentID = contentID;
+    public void setContentId(List<String> contentID) {
+        this.contentId = contentID;
     }
 
     public String getContentType() {

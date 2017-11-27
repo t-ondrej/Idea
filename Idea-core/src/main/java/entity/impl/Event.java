@@ -26,7 +26,7 @@ public class Event implements IEntity {
     @JsonProperty("AggrID")
     @Type(type = "jsonStringArray")
     @Column(name = "\"AGGRID\"")
-    private List<String> aggrID;
+    private List<String> aggrId;
 
     @JsonProperty("AltNames")
     @Type(type = "jsonStringArray")
@@ -54,10 +54,10 @@ public class Event implements IEntity {
     @Column(name = "\"CONNCOUNT\"")
     private int connCount;
 
-    @JsonProperty("CorrelId")
+    @JsonProperty("CorrelID")
     @Type(type = "jsonStringArray")
     @Column(name = "\"CORRELID\"")
-    private List<String> correlID;
+    private List<String> correlId;
 
     @JsonProperty("CreateTime")
     @Column(name = "\"CREATETIME\"")
@@ -94,7 +94,7 @@ public class Event implements IEntity {
     @JsonProperty("PredID")
     @Type(type = "jsonStringArray")
     @Column(name = "\"PREDID\"")
-    private List<String> predID;
+    private List<String> predId;
 
     @JsonProperty("Ref")
     @Type(type = "jsonStringArray")
@@ -104,7 +104,7 @@ public class Event implements IEntity {
     @JsonProperty("RelID")
     @Type(type = "jsonStringArray")
     @Column(name = "\"RELID\"")
-    private List<String> relID;
+    private List<String> relId;
 
     @JsonProperty("WinEndTime")
     @Column(name = "\"WINENDTIME\"")
@@ -142,12 +142,12 @@ public class Event implements IEntity {
         this.id = id;
     }
 
-    public List<String> getAggrID() {
-        return aggrID;
+    public List<String> getAggrId() {
+        return aggrId;
     }
 
-    public void setAggrID(List<String> aggrID) {
-        this.aggrID = aggrID;
+    public void setAggrId(List<String> aggrID) {
+        this.aggrId = aggrID;
     }
 
     public List<String> getAltnames() {
@@ -199,11 +199,11 @@ public class Event implements IEntity {
     }
 
     public List<String> getCorrelID() {
-        return correlID;
+        return correlId;
     }
 
     public void setCorrelID(List<String> correlID) {
-        this.correlID = correlID;
+        this.correlId = correlID;
     }
 
     public Date getCreateTime() {
@@ -270,12 +270,12 @@ public class Event implements IEntity {
         this.packetCount = packetCount;
     }
 
-    public List<String> getPredID() {
-        return predID;
+    public List<String> getPredId() {
+        return predId;
     }
 
-    public void setPredID(List<String> predID) {
-        this.predID = predID;
+    public void setPredId(List<String> predID) {
+        this.predId = predID;
     }
 
     public List<String> getRef() {
@@ -286,12 +286,12 @@ public class Event implements IEntity {
         this.ref = ref;
     }
 
-    public List<String> getRelID() {
-        return relID;
+    public List<String> getRelId() {
+        return relId;
     }
 
-    public void setRelID(List<String> relID) {
-        this.relID = relID;
+    public void setRelId(List<String> relID) {
+        this.relId = relID;
     }
 
     public Date getWinEndTime() {

@@ -4,8 +4,10 @@ import dao.interfaces.IEventDao;
 import entity.impl.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import predicates.PredicateInfo;
 import services.interfaces.IEventService;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -39,5 +41,31 @@ public class EventService implements IEventService {
     @Override
     public Event findById(String id) {
         return eventDao.findById(id);
+    }
+
+    @Override
+    public List<Event> findAll(PredicateInfo[] predicateInfo) {
+        if (predicateInfo == null || predicateInfo.length < 1) {
+            return Collections.emptyList();
+        }
+
+        return eventDao.findAll(predicateInfo);
+    }
+
+    @Override
+    public List<Event> doFulltextSearch(String target) {
+        if (target == null) {
+            return Collections.emptyList();
+        }
+
+        final String[] colNames = new String[] {
+            "format", "createTime", "detectTime", "winStartTime", "winEndTime",
+            "eventTime", "ceaseTime", "confidence", "note",
+            "connCount", "category", "ref", "altnames",
+            "correlId", "aggrId", "predId", "relId", "flowCount", "packetCount",
+            "byteCount", "description"
+        };
+
+        return eventDao.doFulltextSearch(colNames, target);
     }
 }

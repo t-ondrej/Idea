@@ -1,5 +1,4 @@
-import configuration.JpaConfiguration;
-import configuration.JpaProdConfiguration;
+import configuration.JpaProdConfig;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,7 +12,7 @@ public class IdeaApplication {
 
     public static void main(String[] args) {
         new SpringApplicationBuilder(IdeaApplication.class)
-                .sources(JpaProdConfiguration.class)
+                .sources(JpaProdConfig.class)
                 .run(args);
     }
 }

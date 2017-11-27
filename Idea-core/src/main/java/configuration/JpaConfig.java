@@ -1,9 +1,7 @@
 package configuration;
 
 import com.jcraft.jsch.JSch;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Primary;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
 
@@ -14,7 +12,7 @@ import java.util.Properties;
 /**
  * Created by Tomas on 18.11.2017.
  */
-public abstract class JpaConfiguration {
+public abstract class JpaConfig {
 
     static {
         setPortForwarding();
@@ -31,15 +29,7 @@ public abstract class JpaConfiguration {
     }
 
     @Bean
-    public abstract DataSource getDataSource(); //{
-    /*    return DataSourceBuilder
-                .create()
-                .driverClassName("org.postgresql.Driver")
-                .url("jdbc:postgresql://localhost:6844/root")
-                .username("root")
-                .password("root")
-                .build();
-    }*/
+    public abstract DataSource getDataSource();
 
     private static void setPortForwarding() {
         try {

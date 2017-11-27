@@ -17,7 +17,7 @@
         <class>entity.impl.Target</class>
 
         <properties>
-            <property name="hibernate.dialect" value="hibernate.dialect.JSONBPostgreSQLDialect"/>
+            <property name="hibernate.dialect" value="hibernate.dialect.CustomPostgreSQLDialect"/>
        <!--     <property name="hibernate.current_session_context_class" value="thread"></property> -->
             <property name="hibernate.archive.autodetection" value="class, hbm"/>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
@@ -47,7 +47,7 @@
         <class>entity.impl.Target</class>
 
         <properties>
-            <property name="hibernate.dialect" value="hibernate.dialect.JSONBPostgreSQLDialect"/>
+            <property name="hibernate.dialect" value="hibernate.dialect.CustomPostgreSQLDialect"/>
            <!-- <property name="hibernate.current_session_context_class" value="thread"></property> -->
             <property name="hibernate.archive.autodetection" value="class, hbm"/>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>

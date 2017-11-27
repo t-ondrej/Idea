@@ -1,6 +1,7 @@
 package services.interfaces;
 
 import entity.IEntity;
+import predicates.PredicateInfo;
 
 import java.util.List;
 
@@ -15,4 +16,8 @@ public interface IEntityService<T extends IEntity, ID> {
     void remove(T entity);
 
     T findById(ID id);
+
+    List<T> findAll(PredicateInfo[] predicateInfo);
+
+    List<T> doFulltextSearch(String target);
 }

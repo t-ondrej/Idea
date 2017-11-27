@@ -42,7 +42,7 @@ public class Node implements IEntity {
     @JsonProperty("SW")
     @Type(type = "jsonStringArray")
     @Column(name = "\"SW\"")
-    private List<String> sW;
+    private List<String> sw;
 
     @JsonProperty("Type")
     @Type(type = "jsonStringArray")
@@ -89,12 +89,12 @@ public class Node implements IEntity {
         this.note = note;
     }
 
-    public List<String> getsW() {
-        return sW;
+    public List<String> getsSw() {
+        return sw;
     }
 
-    public void setsW(List<String> sW) {
-        this.sW = sW;
+    public void setsSw(List<String> sW) {
+        this.sw = sW;
     }
 
     public List<String> getType() {
