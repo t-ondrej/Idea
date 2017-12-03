@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.StackPane?>
+<StackPane stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.141"
+           xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxcontrollers.AttachViewController">
+    <children>
+        <StackPane>
+            <TableView fx:id="attachTableView">
+                <columns>
+                    <TableColumn fx:id="idColumn" text="ID"/>
+                    <TableColumn fx:id="contentColumn" text="Content"/>
+                    <TableColumn fx:id="contentCharsetColumn" text="ContentCharset"/>
+                    <TableColumn fx:id="contentEncodingColumn" text="ContentEncoding"/>
+                    <TableColumn fx:id="contentIdColumn" text="ContentID"/>
+                    <TableColumn fx:id="contentTypeColumn" text="ContentType"/>
+                    <TableColumn fx:id="externalUriColumn" text="ExternalUri"/>
+                    <TableColumn fx:id="filenameColumn" text="Filename"/>
+                    <TableColumn fx:id="handleColumn" text="Handle"/>
+                    <TableColumn fx:id="hashColumn" text="Hash"/>
+                    <TableColumn fx:id="noteColumn" text="Note"/>
+                    <TableColumn fx:id="refColumn" text="Ref"/>
+                    <TableColumn fx:id="sizeColumn" text="Size"/>
+                    <TableColumn fx:id="typeColumn" text="Type"/>
+                </columns>
+
+                <placeholder>
+                    <Label text="No results" />
+                </placeholder>
+            </TableView>
+        </StackPane>
+    </children>
+</StackPane>

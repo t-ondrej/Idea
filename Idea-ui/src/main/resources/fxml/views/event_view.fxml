@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<AnchorPane stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxcontrollers.EventViewController">
+    <children>
+        <VBox>
+            <TableView fx:id="eventTableView" AnchorPane.leftAnchor="0.0">
+                <columns>
+                    <TableColumn fx:id="idColumn" text="ID" />
+                    <TableColumn fx:id="formatColumn" text="Format" />
+                    <TableColumn fx:id="createTimeColumn" text="Create time" />
+                    <TableColumn fx:id="detectTimeColumn" text="Detect time" />
+                    <TableColumn fx:id="winStartTimeColumn" text="Win start time" />
+                    <TableColumn fx:id="winEndTimeColumn" text="Win end time" />
+                    <TableColumn fx:id="eventTimeColumn" text="Event time" />
+                    <TableColumn fx:id="ceaseTimeColumn" text="Cease time" />
+                    <TableColumn fx:id="confidenceColumn" text="Confidence" />
+                    <TableColumn fx:id="noteColumn" text="Note" />
+                    <TableColumn fx:id="connCountColumn" text="Conncount" />
+                    <TableColumn fx:id="categoryColumn" text="Category" />
+                    <TableColumn fx:id="refColumn" text="Ref" />
+                    <TableColumn fx:id="altnamesColumn" text="Altnames" />
+                    <TableColumn fx:id="corelidColumn" text="CorrelID" />
+                    <TableColumn fx:id="aggridColumn" text="AggrID" />
+                    <TableColumn fx:id="predidColumn" text="PredID" />
+                    <TableColumn fx:id="relidColumn" text="RelID" />
+                    <TableColumn fx:id="flowCountColumn" text="FlowCount" />
+                    <TableColumn fx:id="packetCountColumn" text="PacketCount" />
+                    <TableColumn fx:id="byteCountColumn" text="ByteCount" />
+                    <TableColumn fx:id="descriptionColumn" text="Description" />
+                </columns>
+
+                <placeholder>
+                    <Label text="No results" />
+                </placeholder>
+
+                <opaqueInsets>
+                    <Insets />
+                </opaqueInsets>
+                <padding>
+                    <Insets bottom="-1.0" left="-1.0" right="-1.0" top="-1.0" />
+                </padding>
+            </TableView>
+        </VBox>
+    </children>
+</AnchorPane>

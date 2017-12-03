@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<StackPane stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.141"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="fxcontrollers.SourceViewController">
+    <children>
+        <VBox>
+            <TableView fx:id="sourceTableView" >
+                <columns>
+                    <TableColumn fx:id="idColumn" text="ID"/>
+                    <TableColumn fx:id="anonymisedColumn" text="Anonymised"/>
+                    <TableColumn fx:id="asnColumn" text="ASN"/>
+                    <TableColumn fx:id="attachHandColumn" text="AttachHand"/>
+                    <TableColumn fx:id="descriptionColumn" text="Description"/>
+                    <TableColumn fx:id="emailColumn" text="Email"/>
+                    <TableColumn fx:id="hostnameColumn" text="Hostname"/>
+                    <TableColumn fx:id="impreciseColumn" text="Imprecise"/>
+                    <TableColumn fx:id="ip4Column" text="IP4"/>
+                    <TableColumn fx:id="ip6Column" text="IP6"/>
+                    <TableColumn fx:id="macColumn" text="MAC"/>
+                    <TableColumn fx:id="netnameColumn" text="Netname"/>
+                    <TableColumn fx:id="noteColumn" text="Note"/>
+                    <TableColumn fx:id="portColumn" text="Port"/>
+                    <TableColumn fx:id="protoColumn" text="Proto"/>
+                    <TableColumn fx:id="refColumn" text="Ref"/>
+                    <TableColumn fx:id="routerColumn" text="Router"/>
+                    <TableColumn fx:id="spoofedColumn" text="Spoofed"/>
+                    <TableColumn fx:id="typeColumn" text="Type"/>
+                    <TableColumn fx:id="urlColumn" text="URL"/>
+                </columns>
+
+                <placeholder>
+                    <Label text="No results" />
+                </placeholder>
+            </TableView>
+        </VBox>
+    </children>
+</StackPane>
