@@ -1,6 +1,6 @@
 package fxcontrollers;
 
-import components.TooltippedTableCell;
+import utils.TooltippedTableCell;
 import entity.impl.Attach;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
