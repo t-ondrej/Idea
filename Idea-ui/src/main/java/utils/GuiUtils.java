@@ -28,7 +28,7 @@ public class GuiUtils {
         }
     }
 
-    public static void autoFitTable3(TableView tableView) {
+    public static void autoFitTable2(TableView tableView) {
         TableViewSkin<?> skin = (TableViewSkin<?>) tableView.getSkin();
         TableHeaderRow headerRow = skin.getTableHeaderRow();
         NestedTableColumnHeader rootHeader = headerRow.getRootHeader();

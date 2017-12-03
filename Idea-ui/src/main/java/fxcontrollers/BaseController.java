@@ -1,9 +1,10 @@
 package fxcontrollers;
 
-import components.TooltippedTableCell;
+import components.SearchComponent;
 import entity.IEntity;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.stage.Screen;
 import services.interfaces.IEntityService;
@@ -21,6 +22,8 @@ public abstract class BaseController<T extends IEntity, ID> implements ISearchHa
 
     private IEntityService<T, ID> entityService;
 
+    @FXML protected SearchComponent searchComponent;
+
     protected void initBaseController(
             TableView<T> entityTableView,
             ObservableList<T> entityTableModels,
@@ -33,14 +36,16 @@ public abstract class BaseController<T extends IEntity, ID> implements ISearchHa
         fitTable();
     }
 
-    public void handleSearchAction(String keyword) {
+    public void handleSearchAction() {
         List<T> result;
+        String keyword = searchComponent.getSearchWord();
+
         if (keyword.trim().equals(""))
             result = entityService.getAll();
         else
             result = entityService.doFulltextSearch(keyword);
-        entityTableModels = FXCollections.observableArrayList(result);
 
+        entityTableModels = FXCollections.observableArrayList(result);
         refresh();
     }
 

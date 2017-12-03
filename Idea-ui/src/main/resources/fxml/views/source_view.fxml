@@ -4,12 +4,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<StackPane stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.141"
-           xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="fxcontrollers.SourceViewController">
+<?import components.SearchComponent?>
+<StackPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="fxcontrollers.SourceViewController"
+           stylesheets="@../../css/main.css">
     <children>
         <VBox>
-            <TableView fx:id="sourceTableView" >
+            <SearchComponent fx:id="searchComponent" onSearchAction="#handleSearchAction"/>
+            <TableView fx:id="sourceTableView">
                 <columns>
                     <TableColumn fx:id="idColumn" text="ID"/>
                     <TableColumn fx:id="anonymisedColumn" text="Anonymised"/>
@@ -34,7 +36,7 @@
                 </columns>
 
                 <placeholder>
-                    <Label text="No results" />
+                    <Label text="No results"/>
                 </placeholder>
             </TableView>
         </VBox>

@@ -37,11 +37,11 @@ public class SearchComponent extends StackPane {
         }
     }
 
-    public void s(Event e) {
+    public void search(Event e) {
         onSearchAction.handle(e);
     }
 
-    public String getTextFieldText() {
+    public String getSearchWord() {
         return searchTextField.getText();
     }
 
