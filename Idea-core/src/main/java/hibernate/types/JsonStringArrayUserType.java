@@ -19,6 +19,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -58,7 +59,7 @@ public class JsonStringArrayUserType extends CollectionUserType {
         try {
             final String json = resultSet.getString(names[0]);
             Object obj = json == null
-                    ? null
+                    ? Collections.emptyList()
                     : MAPPER.readValue(json, List.class);
 
             return obj;

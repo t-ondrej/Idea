@@ -10,6 +10,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
+import predicates.Operator;
+import predicates.PredicateInfo;
 import services.interfaces.IEventService;
 
 import java.util.List;
@@ -42,11 +44,11 @@ public class EventDaoTest {
     @Test
     @Transactional
     public void testFilterEvents() {
-       // PredicateInfo[] predicates = new PredicateInfo[]{new PredicateInfo("note", Operator.EQUALS, new String[]{"SSH login attempt"})};
-       // List<Event> events = eventDao.findAll(predicates);
+        PredicateInfo[] predicates = new PredicateInfo[]{new PredicateInfo("relId", Operator.EQUALS, new String[]{"rellid"})};
+        List<Event> events = eventDao.findAll(predicates);
         //List<Event> events = eventDao.doFulltextSearch(new String[]{"note", "category"}, "attempt");
         //Object obj = new Object();
-        List<Event> events = eventService.doFulltextSearch("cesnak");
-        Object obj = new Object();
+      //  List<Event> events = eventService.doFulltextSearch("cesnak");
+    //    Object obj = new Object();
     }
 }

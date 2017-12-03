@@ -1,6 +1,7 @@
 package predicates;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.ArrayList;
@@ -38,6 +39,8 @@ public final class PredicateBuilder {
         Operator operator = predicateInfo.getOperator();
         String[] params = predicateInfo.getParams();
         String fieldName = predicateInfo.getFieldName();
+
+        Path<?> i = rootEntity.get(fieldName);
 
         if (operator == Operator.GREATER) {
             return criteriaBuilder.gt(

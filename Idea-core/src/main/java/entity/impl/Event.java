@@ -26,12 +26,12 @@ public class Event implements IEntity {
     @JsonProperty("AggrID")
     @Type(type = "jsonStringArray")
     @Column(name = "\"AGGRID\"")
-    private List<String> aggrId;
+    private List<String> aggrId = new ArrayList<>();
 
     @JsonProperty("AltNames")
     @Type(type = "jsonStringArray")
     @Column(name = "\"ALTNAMES\"")
-    private List<String> altnames;
+    private List<String> altnames = new ArrayList<>();
 
     @JsonProperty("ByteCount")
     @Column(name = "\"BYTECOUNT\"")
@@ -40,7 +40,7 @@ public class Event implements IEntity {
     @JsonProperty("Category")
     @Type(type = "jsonStringArray")
     @Column(name = "\"CATEGORY\"")
-    private List<String> category;
+    private List<String> category = new ArrayList<>();
 
     @JsonProperty("CeaseTime")
     @Column(name = "\"CEASETIME\"")
@@ -57,7 +57,7 @@ public class Event implements IEntity {
     @JsonProperty("CorrelID")
     @Type(type = "jsonStringArray")
     @Column(name = "\"CORRELID\"")
-    private List<String> correlId;
+    private List<String> correlId = new ArrayList<>();
 
     @JsonProperty("CreateTime")
     @Column(name = "\"CREATETIME\"")
@@ -94,17 +94,17 @@ public class Event implements IEntity {
     @JsonProperty("PredID")
     @Type(type = "jsonStringArray")
     @Column(name = "\"PREDID\"")
-    private List<String> predId;
+    private List<String> predId = new ArrayList<>();
 
     @JsonProperty("Ref")
     @Type(type = "jsonStringArray")
     @Column(name = "\"REF\"")
-    private List<String> ref;
+    private List<String> ref = new ArrayList<>();
 
     @JsonProperty("RelID")
     @Type(type = "jsonStringArray")
     @Column(name = "\"RELID\"")
-    private List<String> relId;
+    private List<String> relId = new ArrayList<>();
 
     @JsonProperty("WinEndTime")
     @Column(name = "\"WINENDTIME\"")
@@ -133,6 +133,11 @@ public class Event implements IEntity {
     @JsonManagedReference
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     private List<Target> targets = new ArrayList<>();
+
+    public Event() {
+        List<String> s = new ArrayList<>();
+        this.altnames = s;
+    }
 
     public String getId() {
         return id;

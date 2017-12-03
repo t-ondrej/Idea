@@ -81,12 +81,12 @@ public class Attach implements IEntity {
     @Column(name = "\"TYPE\"")
     private List<String> type;
 
-    public Long getID() {
+    public Long getId() {
         return id;
     }
 
-    public void setID(Long ID) {
-        this.id = ID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getContent() {

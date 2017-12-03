@@ -188,27 +188,27 @@ public class Source implements IEntity {
         this.imprecise = imprecise;
     }
 
-    public List<String> getiIp4() {
+    public List<String> getIp4() {
         return ip4;
     }
 
-    public void setiIp4(List<String> iP4) {
+    public void setIp4(List<String> iP4) {
         this.ip4 = iP4;
     }
 
-    public List<String> getiIp6() {
+    public List<String> getIp6() {
         return ip6;
     }
 
-    public void setiIp6(List<String> iP6) {
+    public void setIp6(List<String> iP6) {
         this.ip6 = iP6;
     }
 
-    public List<String> getmMac() {
+    public List<String> getMac() {
         return mac;
     }
 
-    public void setmMac(List<String> mAC) {
+    public void setMac(List<String> mAC) {
         this.mac = mAC;
     }
 

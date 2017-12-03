@@ -89,11 +89,11 @@ public class Node implements IEntity {
         this.note = note;
     }
 
-    public List<String> getsSw() {
+    public List<String> getSw() {
         return sw;
     }
 
-    public void setsSw(List<String> sW) {
+    public void setSw(List<String> sW) {
         this.sw = sW;
     }
 

@@ -15,6 +15,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -25,16 +26,16 @@ import java.util.logging.Logger;
 @Repository
 public abstract class AbstractDao<T extends IEntity, ID> implements IDao<T, ID> {
 
-    private String tableName;
+    protected String tableName;
 
-    private Class<T> persistentClass;
+    protected Class<T> persistentClass;
 
-    private Logger logger;
+    protected Logger logger;
 
     @PersistenceContext
-    private EntityManager entityManager;
+    protected EntityManager entityManager;
 
-    private PredicateBuilder predicateBuilder;
+    protected PredicateBuilder predicateBuilder;
 
     public AbstractDao(String tableName, Class<T> persistentClass) {
         this.tableName = tableName;
@@ -88,6 +89,9 @@ public abstract class AbstractDao<T extends IEntity, ID> implements IDao<T, ID> 
     }
 
     public List<T> doFulltextSearch(String[] colNames, String target) {
+        if (target == null || target.trim().equals(""))
+            return Collections.emptyList();
+
         return entityManager
                 .createQuery(
                     String.format("select e from %s e where fts(%s, :target) = true",
