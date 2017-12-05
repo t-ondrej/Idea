@@ -1,10 +1,8 @@
 package fxcontrollers;
 
-import utils.TooltippedTableCell;
 import entity.impl.Node;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,6 +11,7 @@ import javafx.scene.control.TableView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import services.interfaces.INodeService;
+import utils.TooltippedTableCell;
 
 import java.net.URL;
 import java.sql.Time;
@@ -43,9 +42,8 @@ public class NodeViewController extends BaseController<Node, Long> implements In
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        nodeModels = FXCollections.observableArrayList(nodeService.getAll());
-
         initBaseController(nodeTableView, nodeModels, nodeService);
+        initTableView();
 
         idColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getId()));
         aggrWinColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getAggrWin()));
@@ -57,8 +55,5 @@ public class NodeViewController extends BaseController<Node, Long> implements In
         swColumn.setCellFactory(TooltippedTableCell.forTableColumn());
         typeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(String.join(", ", cellData.getValue().getType())));
         typeColumn.setCellFactory(TooltippedTableCell.forTableColumn());
-
-        nodeTableView.getItems().addAll(nodeModels);
-
     }
 }

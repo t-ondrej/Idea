@@ -1,11 +1,9 @@
 package fxcontrollers;
 
-import utils.TooltippedTableCell;
 import entity.impl.Attach;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,6 +12,7 @@ import javafx.scene.control.TableView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import services.interfaces.IAttachService;
+import utils.TooltippedTableCell;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -51,9 +50,8 @@ public class AttachViewController extends BaseController<Attach, Long> implement
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        attachModels = FXCollections.observableArrayList(attachService.getAll());
-
         initBaseController(attachTableView, attachModels, attachService);
+        initTableView();
 
         idColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getId()));
         contentColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getContent()));
@@ -81,8 +79,5 @@ public class AttachViewController extends BaseController<Attach, Long> implement
         sizeColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getSize() == null ? 0 : cellData.getValue().getSize()).asObject());
         typeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(String.join(", ", cellData.getValue().getType())));
         typeColumn.setCellFactory(TooltippedTableCell.forTableColumn());
-
-        attachTableView.getItems().addAll(attachModels);
     }
-
 }

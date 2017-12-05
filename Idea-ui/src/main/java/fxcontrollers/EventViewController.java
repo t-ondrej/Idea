@@ -1,11 +1,9 @@
 package fxcontrollers;
 
-import utils.TooltippedTableCell;
 import entity.impl.Event;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,6 +12,7 @@ import javafx.scene.control.TableView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import services.interfaces.IEventService;
+import utils.TooltippedTableCell;
 
 import java.net.URL;
 import java.util.Date;
@@ -60,9 +59,8 @@ public class EventViewController extends BaseController<Event, String> implement
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        eventModels = FXCollections.observableArrayList(eventService.getAll());
-
         initBaseController(eventTableView, eventModels, eventService);
+        initTableView();
 
         idColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getId()));
         idColumn.setCellFactory(TooltippedTableCell.forTableColumn());
@@ -97,6 +95,5 @@ public class EventViewController extends BaseController<Event, String> implement
         byteCountColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getByteCount()).asObject());
         descriptionColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescription()));
         descriptionColumn.setCellFactory(TooltippedTableCell.forTableColumn());
-        eventTableView.getItems().addAll(eventModels);
     }
 }

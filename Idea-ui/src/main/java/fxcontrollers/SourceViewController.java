@@ -1,11 +1,9 @@
 package fxcontrollers;
 
-import utils.TooltippedTableCell;
 import entity.impl.Source;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,6 +12,7 @@ import javafx.scene.control.TableView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import services.interfaces.ISourceService;
+import utils.TooltippedTableCell;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -57,9 +56,8 @@ public class SourceViewController extends BaseController<Source, Long> implement
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        sourceModels = FXCollections.observableArrayList(sourceService.getAll());
-
         initBaseController(sourceTableView, sourceModels, sourceService);
+        initTableView();
 
         idColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getId()));
         anonymisedColumn.setCellValueFactory(cellData -> new SimpleBooleanProperty(cellData.getValue().getAnonymised() == null ? false : cellData.getValue().getAnonymised()));
@@ -97,9 +95,5 @@ public class SourceViewController extends BaseController<Source, Long> implement
         typeColumn.setCellFactory(TooltippedTableCell.forTableColumn());
         urlColumn.setCellValueFactory(cellData -> new SimpleStringProperty(String.join(", ", cellData.getValue().getUrl())));
         urlColumn.setCellFactory(TooltippedTableCell.forTableColumn());
-
-        sourceTableView.getItems().addAll(sourceModels);
-
     }
-
 }

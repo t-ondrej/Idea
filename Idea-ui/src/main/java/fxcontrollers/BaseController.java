@@ -4,6 +4,8 @@ import components.SearchComponent;
 import entity.IEntity;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.stage.Screen;
@@ -24,6 +26,29 @@ public abstract class BaseController<T extends IEntity, ID> implements ISearchHa
 
     @FXML protected SearchComponent searchComponent;
 
+    public void handleSearchAction() {
+        String keyword = searchComponent.getSearchWord();
+
+        Service<List<T>> fetchDataService = new Service<List<T>>() {
+            protected Task<List<T>> createTask() {
+                return new Task<List<T>>() {
+                    protected List<T> call() throws Exception {
+                        return keyword.trim().equals("")
+                                ? entityService.getAll()
+                                : entityService.doFulltextSearch(keyword);
+                    }
+                };
+            }
+        };
+
+        fetchDataService.setOnSucceeded((eventHandler) -> {
+            entityTableModels = FXCollections.observableArrayList(fetchDataService.getValue());
+            refresh();
+        });
+
+        fetchDataService.start();
+    }
+
     protected void initBaseController(
             TableView<T> entityTableView,
             ObservableList<T> entityTableModels,
@@ -36,17 +61,23 @@ public abstract class BaseController<T extends IEntity, ID> implements ISearchHa
         fitTable();
     }
 
-    public void handleSearchAction() {
-        List<T> result;
-        String keyword = searchComponent.getSearchWord();
+    protected void initTableView() {
+        Service<List<T>> fetchDataService = new Service<List<T>>() {
+            protected Task<List<T>> createTask() {
+                return new Task<List<T>>() {
+                    protected List<T> call() throws Exception {
+                        return entityService.getAll();
+                    }
+                };
+            }
+        };
 
-        if (keyword.trim().equals(""))
-            result = entityService.getAll();
-        else
-            result = entityService.doFulltextSearch(keyword);
+        fetchDataService.setOnSucceeded((eventHandler) -> {
+            entityTableModels = FXCollections.observableArrayList(fetchDataService.getValue());
+            refresh();
+        });
 
-        entityTableModels = FXCollections.observableArrayList(result);
-        refresh();
+        fetchDataService.start();
     }
 
     private void refresh() {
