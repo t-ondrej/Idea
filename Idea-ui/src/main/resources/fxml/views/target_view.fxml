@@ -3,9 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import components.SearchComponent?>
+<?import sk.upjs.ics.components.SearchComponent?>
 <StackPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="fxcontrollers.TargetViewController"
+           fx:controller="sk.upjs.ics.fxcontrollers.TargetViewController"
            stylesheets="@../../css/main.css">
     <children>
         <VBox>

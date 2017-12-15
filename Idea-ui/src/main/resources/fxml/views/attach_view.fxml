@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import components.SearchComponent?>
+<?import sk.upjs.ics.components.SearchComponent?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <StackPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="fxcontrollers.AttachViewController"
+           fx:controller="sk.upjs.ics.fxcontrollers.AttachViewController"
            stylesheets="@../../css/main.css">
     <children>
         <VBox>

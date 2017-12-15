@@ -1,4 +1,5 @@
-import config.GuiConfig;
+import javafx.application.Platform;
+import sk.upjs.ics.config.GuiConfig;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -45,5 +46,12 @@ public class IdeaStage extends Application {
         primaryStage.setScene(scene);
 
         primaryStage.show();
+    }
+
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+        Platform.exit();
+        System.exit(0);
     }
 }

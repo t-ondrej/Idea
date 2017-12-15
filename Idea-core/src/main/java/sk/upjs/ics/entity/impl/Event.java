@@ -1,0 +1,356 @@
+package sk.upjs.ics.entity.impl;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import sk.upjs.ics.entity.IEntity;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+/**
+ * Created by Tomas on 8.11.2017.
+ */
+
+@Entity
+@Table(name = "Event")
+public class Event implements IEntity {
+
+    @JsonProperty("ID")
+    @Id
+    @Column(name = "\"IDEVENT\"")
+    private String id;
+
+    @JsonProperty("AggrID")
+    @Type(type = "jsonStringArray")
+    @Column(name = "\"AGGRID\"")
+    private List<String> aggrId = new ArrayList<>();
+
+    @JsonProperty("AltNames")
+    @Type(type = "jsonStringArray")
+    @Column(name = "\"ALTNAMES\"")
+    private List<String> altnames = new ArrayList<>();
+
+    @JsonProperty("ByteCount")
+    @Column(name = "\"BYTECOUNT\"")
+    private int byteCount;
+
+    @JsonProperty("Category")
+    @Type(type = "jsonStringArray")
+    @Column(name = "\"CATEGORY\"")
+    private List<String> category = new ArrayList<>();
+
+    @JsonProperty("CeaseTime")
+    @Column(name = "\"CEASETIME\"")
+    private Date ceaseTime;
+
+    @JsonProperty("Confidence")
+    @Column(name = "\"CONFIDENCE\"")
+    private int confidence;
+
+    @JsonProperty("ConnCount")
+    @Column(name = "\"CONNCOUNT\"")
+    private int connCount;
+
+    @JsonProperty("CorrelID")
+    @Type(type = "jsonStringArray")
+    @Column(name = "\"CORRELID\"")
+    private List<String> correlId = new ArrayList<>();
+
+    @JsonProperty("CreateTime")
+    @Column(name = "\"CREATETIME\"")
+    private Date createTime;
+
+    @JsonProperty("Description")
+    @Column(name = "\"DESCRIPTION\"")
+    private String description;
+
+    @JsonProperty("DetectTime")
+    @Column(name = "\"DETECTTIME\"")
+    private Date detectTime;
+
+    @JsonProperty("EventTime")
+    @Column(name = "\"EVENTTIME\"")
+    private Date eventTime;
+
+    @JsonProperty("FlowCount")
+    @Column(name = "\"FLOWCOUNT\"")
+    private int flowCount;
+
+    @JsonProperty("Format")
+    @Column(name = "\"FORMAT\"")
+    private String format;
+
+    @JsonProperty("Note")
+    @Column(name = "\"NOTE\"")
+    private String note;
+
+    @JsonProperty("PacketCount")
+    @Column(name = "\"PACKETCOUNT\"")
+    private int packetCount;
+
+    @JsonProperty("PredID")
+    @Type(type = "jsonStringArray")
+    @Column(name = "\"PREDID\"")
+    private List<String> predId = new ArrayList<>();
+
+    @JsonProperty("Ref")
+    @Type(type = "jsonStringArray")
+    @Column(name = "\"REF\"")
+    private List<String> ref = new ArrayList<>();
+
+    @JsonProperty("RelID")
+    @Type(type = "jsonStringArray")
+    @Column(name = "\"RELID\"")
+    private List<String> relId = new ArrayList<>();
+
+    @JsonProperty("WinEndTime")
+    @Column(name = "\"WINENDTIME\"")
+    private Date winEndTime;
+
+    @JsonProperty("WinStartTime")
+    @Column(name = "\"WINSTARTTIME\"")
+    private Date winStartTime;
+
+    @JsonProperty("Attach")
+    @JsonManagedReference
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+    private List<Attach> attachs = new ArrayList<>();
+
+    @JsonProperty("Node")
+    @JsonManagedReference
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+    private List<Node> nodes = new ArrayList<>();
+
+    @JsonProperty("Source")
+    @JsonManagedReference
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+    private List<Source> sources = new ArrayList<>();
+
+    @JsonProperty("Target")
+    @JsonManagedReference
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+    private List<Target> targets = new ArrayList<>();
+
+    public Event() {
+        List<String> s = new ArrayList<>();
+        this.altnames = s;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public List<String> getAggrId() {
+        return aggrId;
+    }
+
+    public void setAggrId(List<String> aggrID) {
+        this.aggrId = aggrID;
+    }
+
+    public List<String> getAltnames() {
+        return altnames;
+    }
+
+    public void setAltnames(List<String> altnames) {
+        this.altnames = altnames;
+    }
+
+    public int getByteCount() {
+        return byteCount;
+    }
+
+    public void setByteCount(int byteCount) {
+        this.byteCount = byteCount;
+    }
+
+    public List<String> getCategory() {
+        return this.category;
+    }
+
+    public void setCategory(List<String> category) {
+        this.category = category;
+    }
+
+    public Date getCeaseTime() {
+        return ceaseTime;
+    }
+
+    public void setCeaseTime(Date ceaseTime) {
+        this.ceaseTime = ceaseTime;
+    }
+
+    public int getConfidence() {
+        return confidence;
+    }
+
+    public void setConfidence(int confidence) {
+        this.confidence = confidence;
+    }
+
+    public int getConnCount() {
+        return connCount;
+    }
+
+    public void setConnCount(int connCount) {
+        this.connCount = connCount;
+    }
+
+    public List<String> getCorrelID() {
+        return correlId;
+    }
+
+    public void setCorrelID(List<String> correlID) {
+        this.correlId = correlID;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Date getDetectTime() {
+        return detectTime;
+    }
+
+    public void setDetectTime(Date detectTime) {
+        this.detectTime = detectTime;
+    }
+
+    public Date getEventTime() {
+        return eventTime;
+    }
+
+    public void setEventTime(Date eventTime) {
+        this.eventTime = eventTime;
+    }
+
+    public int getFlowCount() {
+        return flowCount;
+    }
+
+    public void setFlowCount(int flowCount) {
+        this.flowCount = flowCount;
+    }
+
+    public String getFormat() {
+        return format;
+    }
+
+    public void setFormat(String format) {
+        this.format = format;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public int getPacketCount() {
+        return packetCount;
+    }
+
+    public void setPacketCount(int packetCount) {
+        this.packetCount = packetCount;
+    }
+
+    public List<String> getPredId() {
+        return predId;
+    }
+
+    public void setPredId(List<String> predID) {
+        this.predId = predID;
+    }
+
+    public List<String> getRef() {
+        return ref;
+    }
+
+    public void setRef(List<String> ref) {
+        this.ref = ref;
+    }
+
+    public List<String> getRelId() {
+        return relId;
+    }
+
+    public void setRelId(List<String> relID) {
+        this.relId = relID;
+    }
+
+    public Date getWinEndTime() {
+        return winEndTime;
+    }
+
+    public void setWinEndTime(Date winEndTime) {
+        this.winEndTime = winEndTime;
+    }
+
+    public Date getWinStartTime() {
+        return winStartTime;
+    }
+
+    public void setWinStartTime(Date winStartTime) {
+        this.winStartTime = winStartTime;
+    }
+
+    public List<Attach> getAttachs() {
+        return attachs;
+    }
+
+    public void setAttachs(List<Attach> attachs) {
+        this.attachs = attachs;
+    }
+
+    public List<Node> getNodes() {
+        return nodes;
+    }
+
+    public void setNodes(List<Node> nodes) {
+        this.nodes = nodes;
+    }
+
+    public List<Source> getSources() {
+        return sources;
+    }
+
+    public void setSources(List<Source> sources) {
+        this.sources = sources;
+    }
+
+    public List<Target> getTargets() {
+        return targets;
+    }
+
+    public void setTargets(List<Target> targets) {
+        this.targets = targets;
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "id='" + id + '\'' +
+                '}';
+    }
+}
