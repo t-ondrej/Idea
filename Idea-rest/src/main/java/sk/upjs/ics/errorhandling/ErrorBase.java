@@ -9,7 +9,7 @@ public class ErrorBase {
 
     protected static ModelAndView createModelView(String error, int status, String message) {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("error");
+        mav.setViewName("404");
 
         mav.addObject("error", error);
         mav.addObject("status", status);
