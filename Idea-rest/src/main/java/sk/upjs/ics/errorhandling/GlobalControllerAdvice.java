@@ -12,38 +12,39 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @ControllerAdvice
-public class GlobalControllerAdvice {
-    
+public class GlobalControllerAdvice extends ErrorBase {
+
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ResponseBody
-    public ErrorMessage handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException e) {
-        return new ErrorMessage(HttpStatus.BAD_REQUEST.value(),
-                            "Parameter has to be of a type " + e.getRequiredType().getSimpleName());
+    public @ResponseBody ModelAndView handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException e) {
+        return createModelView("Wrong argument type",
+                                HttpStatus.BAD_REQUEST.value(),
+                                "Desired object type is " + e.getRequiredType().getSimpleName());
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.UNSUPPORTED_MEDIA_TYPE)
-    @ResponseBody
-    ErrorMessage getErrorMessage(HttpMediaTypeNotSupportedException ex) {
+    public @ResponseBody ModelAndView getErrorMessage(HttpMediaTypeNotSupportedException ex) {
         String supported = "Supported content types: " + MediaType.toString(ex.getSupportedMediaTypes());
-        return new ErrorMessage(HttpStatus.UNSUPPORTED_MEDIA_TYPE.value(),
-                            "Supported media type is: " + supported);
+        return createModelView("Unsupported media type",
+                                HttpStatus.UNSUPPORTED_MEDIA_TYPE.value(),
+                                "Supported media type is: " + supported);
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ResponseBody
-    ErrorMessage handleException(MethodArgumentNotValidException ex) {
+    public @ResponseBody ModelAndView handleException(MethodArgumentNotValidException ex) {
         List<FieldError> fieldErrors = ex.getBindingResult().getFieldErrors();
         List<ObjectError> globalErrors = ex.getBindingResult().getGlobalErrors();
         List<String> errors = new ArrayList<>(fieldErrors.size() + globalErrors.size());
         String error;
+
         for (FieldError fieldError : fieldErrors) {
             error = fieldError.getField() + ", " + fieldError.getDefaultMessage();
             errors.add(error);
@@ -52,18 +53,25 @@ public class GlobalControllerAdvice {
             error = objectError.getObjectName() + ", " + objectError.getDefaultMessage();
             errors.add(error);
         }
-        return new ErrorMessage(HttpStatus.BAD_REQUEST.value(), String.join(", ", errors));
+        return createModelView("Method argument not valid",
+                                HttpStatus.BAD_REQUEST.value(),
+                                String.join(", ", errors));
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ResponseBody
-    ErrorMessage getErrorMessage(HttpMessageNotReadableException ex) {
+    public @ResponseBody ModelAndView getErrorMessage(HttpMessageNotReadableException ex) {
         Throwable mostSpecificCause = ex.getMostSpecificCause();
+
         if (mostSpecificCause != null) {
             String message = mostSpecificCause.getMessage();
-            return new ErrorMessage(HttpStatus.BAD_REQUEST.value(), message);
+            return createModelView("Http message not readable",
+                                    HttpStatus.BAD_REQUEST.value(),
+                                    message);
         }
-        return new ErrorMessage(HttpStatus.BAD_REQUEST.value(), ex.getMessage());
+
+        return createModelView("Http message not readable",
+                                HttpStatus.BAD_REQUEST.value(),
+                                ex.getMessage());
     }
 }

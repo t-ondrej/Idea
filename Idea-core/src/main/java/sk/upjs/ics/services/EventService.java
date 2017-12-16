@@ -34,8 +34,18 @@ public class EventService implements IEventService {
     }
 
     @Override
+    public void mergeAll(List<Event> entities) {
+        eventDao.mergeAll(entities);
+    }
+
+    @Override
     public void remove(Event entity) {
         eventDao.remove(entity);
+    }
+
+    @Override
+    public void removeById(String id) {
+        eventDao.removeById(id);
     }
 
     @Override

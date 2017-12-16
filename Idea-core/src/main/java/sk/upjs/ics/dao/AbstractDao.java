@@ -61,8 +61,21 @@ public abstract class AbstractDao<T extends IEntity, ID> implements IDao<T, ID> 
         entityManager.persist(entity);
     }
 
+    public void mergeAll(List<T> entities) {
+        entities.forEach(entity -> entityManager.persist(entity));
+    }
+
     public void remove(T entity) {
         logger.info("Removing " + entity.toString());
+        entityManager.remove(entity);
+    }
+
+    public void removeById(ID id) {
+        T entity = findById(id);
+
+        if (entity == null)
+            return;
+
         entityManager.remove(entity);
     }
 

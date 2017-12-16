@@ -34,8 +34,18 @@ public class TargetService implements ITargetService {
     }
 
     @Override
+    public void mergeAll(List<Target> entities) {
+        targetDao.mergeAll(entities);
+    }
+
+    @Override
     public void remove(Target entity) {
         targetDao.remove(entity);
+    }
+
+    @Override
+    public void removeById(Long id) {
+        targetDao.removeById(id);
     }
 
     @Override

@@ -13,7 +13,11 @@ public interface IEntityService<T extends IEntity, ID> {
 
     void merge(T entity);
 
+    void mergeAll(List<T> entities);
+
     void remove(T entity);
+
+    void removeById(ID id);
 
     T findById(ID id);
 

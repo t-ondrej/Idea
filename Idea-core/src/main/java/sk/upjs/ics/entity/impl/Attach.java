@@ -2,6 +2,7 @@ package sk.upjs.ics.entity.impl;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModelProperty;
 import sk.upjs.ics.entity.IEntity;
 import org.hibernate.annotations.Type;
 
@@ -19,24 +20,29 @@ public class Attach implements IEntity {
     private Long id;
 
     @JsonProperty("Content")
+    @ApiModelProperty(notes = "Attachment content.")
     @Column(name = "\"CONTENT\"")
     private String content;
 
     @JsonProperty("ContentCharset")
+    @ApiModelProperty(notes = "Character set name may consist of alphanumeric, dot, colon, minus sign, underscore and parentheses (round brackets).")
     @Column(name = "\"CONTENTCHARSET\"")
     private String contentCharset;
 
     @JsonProperty("ContentEncoding")
+    @ApiModelProperty(notes = "May contain only string \"base64\" (however note that key can be nonexistent, which means native encoding).")
     @Column(name = "\"CONTENTENCODING\"")
     private String contentEncoding;
 
     @JsonProperty("ContentID")
     @Type(type = "jsonStringArray")
+    @ApiModelProperty(notes = "Array of external content IDs.")
     @Column(name = "\"CONTENTID\"")
     private List<String> contentId;
 
     @JsonProperty("ContentType")
     @Column(name = "\"CONTENTTYPE\"")
+    @ApiModelProperty(notes = "Internet media type without parameters. Format is type and subtype, separated by slash, where type can contain only alphanumeric, underscore and minus sign, and subtype can contain only alphanumeric, plus and minus sign, underscore and dot.")
     private String contentType;
 
     @JsonBackReference
@@ -46,38 +52,46 @@ public class Attach implements IEntity {
 
     @JsonProperty("ExternalUri")
     @Type(type = "jsonStringArray")
+    @ApiModelProperty(notes = "Array of external URIs.")
     @Column(name = "\"EXTERNALURI\"")
     private List<String> externalUri;
 
     @JsonProperty("FileName")
     @Type(type = "jsonStringArray")
+    @ApiModelProperty(notes = "Array of filenames.")
     @Column(name = "\"FILENAME\"")
     private List<String> fileName;
 
     @JsonProperty("Handle")
+    @ApiModelProperty(notes = "String value unique among all \"Handle\" element values. May contain only alphanumeric or underscore, must not start with number and must not be empty.")
     @Column(name = "\"HANDLE\"")
     private String handle;
 
     @JsonProperty("Hash")
+    @ApiModelProperty(notes = "Array of checksums.")
     @Type(type = "jsonStringArray")
     @Column(name = "\"HASH\"")
     private List<URI> hash;
 
     @JsonProperty("Note")
+    @ApiModelProperty(notes = "Free text human readable additional note.")
     @Column(name = "\"NOTE\"")
     private String note;
 
     @JsonProperty("Ref")
     @Type(type = "jsonStringArray")
+    @ApiModelProperty(notes = "Array of references.")
     @Column(name = "\"REF\"")
     private List<URI> ref;
 
     @JsonProperty("Size")
+    @ApiModelProperty(notes = "JSON \"number\" with no fractional and exponential part.")
     @Column(name = "\"SIZE\"")
     private Integer size;
 
     @JsonProperty("Type")
     @Type(type = "jsonStringArray")
+    @ApiModelProperty(notes = "Array of attachment type tags.")
     @Column(name = "\"TYPE\"")
     private List<String> type;
 

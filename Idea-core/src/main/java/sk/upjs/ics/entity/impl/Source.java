@@ -2,6 +2,7 @@ package sk.upjs.ics.entity.impl;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModelProperty;
 import sk.upjs.ics.entity.IEntity;
 import org.hibernate.annotations.Type;
 
@@ -22,25 +23,30 @@ public class Source implements IEntity {
     private Long id;
 
     @JsonProperty("Anonymised")
+    @ApiModelProperty(notes = "JSON \"true\" or \"false\" value.")
     @Column(name = "\"ANONYMISED\"")
     private Boolean anonymised;
 
     @JsonProperty("ASN")
     @Type(type = "jsonStringArray")
+    @ApiModelProperty(notes = "Autonomous system numbers.")
     @Column(name = "\"ASN\"")
     private List<String> asn;
 
     @JsonProperty("AttachHand")
     @Type(type = "jsonStringArray")
+    @ApiModelProperty(notes = "Array of attachment identifiers.")
     @Column(name = "\"ATTACHHAND\"")
     private List<String> attachHand;
 
     @JsonProperty("Description")
+    @ApiModelProperty(notes = "Free text human readable additional description.")
     @Column(name = "\"DESCRIPTION\"")
     private String description;
 
     @JsonProperty("Email")
     @Type(type = "jsonStringArray")
+    @ApiModelProperty(notes = "Array of email addresses.")
     @Column(name = "\"EMAIL\"")
     private List<String> email;
 
@@ -51,68 +57,82 @@ public class Source implements IEntity {
 
     @JsonProperty("Hostname")
     @Type(type = "jsonStringArray")
+    @ApiModelProperty(notes = "Array of hostnames.")
     @Column(name = "\"HOSTNAME\"")
     private List<String> hostname;
 
     @JsonProperty("Imprecise")
+    @ApiModelProperty(notes = "JSON \"true\" or \"false\" value.")
     @Column(name = "\"IMPRECISE\"")
     private Boolean imprecise;
 
     @JsonProperty("IP4")
     @Type(type = "jsonStringArray")
+    @ApiModelProperty(notes = "Array of IPv4 addresses.")
     @Column(name = "\"IP4\"")
     private List<String> ip4;
 
     @JsonProperty("IP6")
     @Type(type = "jsonStringArray")
+    @ApiModelProperty(notes = "Array of IPv6 addresses.")
     @Column(name = "\"IP6\"")
     private List<String> ip6;
 
     @JsonProperty("MAC")
     @Type(type = "jsonStringArray")
+    @ApiModelProperty(notes = "Array of MAC addresses.")
     @Column(name = "\"MAC\"")
     private List<String> mac;
 
     @JsonProperty("Netname")
     @Type(type = "jsonStringArray")
+    @ApiModelProperty(notes = "Array of RIR network identifiers.")
     @Column(name = "\"NETNAME\"")
     private List<String> netname;
 
     @JsonProperty("Note")
+    @ApiModelProperty(notes = "Free text human readable additional note.")
     @Column(name = "\"NOTE\"")
     private String note;
 
     @JsonProperty("Port")
     @Type(type = "jsonStringArray")
+    @ApiModelProperty(notes = "Array of port numbers.")
     @Column(name = "\"PORT\"")
     private List<String> port;
 
     @JsonProperty("Proto")
     @Type(type = "jsonStringArray")
+    @ApiModelProperty(notes = "Array of protocol names.")
     @Column(name = "\"PROTO\"")
     private List<String> proto;
 
     @JsonProperty("Ref")
     @Type(type = "jsonStringArray")
+    @ApiModelProperty(notes = "Array of references.")
     @Column(name = "\"REF\"")
     private List<String> ref;
 
     @JsonProperty("Router")
     @Type(type = "jsonStringArray")
+    @ApiModelProperty(notes = "Array of router/interface paths.")
     @Column(name = "\"ROUTER\"")
     private List<String> router;
 
     @JsonProperty("Spoofed")
+    @ApiModelProperty(notes = "JSON \"true\" or \"false\" value.")
     @Column(name = "\"SPOOFED\"")
     private Boolean spoofed;
 
     @JsonProperty("Type")
     @Type(type = "jsonStringArray")
+    @ApiModelProperty(notes = "Array of source/target categories.")
     @Column(name = "\"TYPE\"")
     private List<String> type;
 
     @JsonProperty("URL")
     @Type(type = "jsonStringArray")
+    @ApiModelProperty(notes = "Array of URLs.")
     @Column(name = "\"URL\"")
     private List<String> url;
 

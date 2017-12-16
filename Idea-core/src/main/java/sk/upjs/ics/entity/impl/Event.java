@@ -2,6 +2,7 @@ package sk.upjs.ics.entity.impl;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModelProperty;
 import sk.upjs.ics.entity.IEntity;
 import org.hibernate.annotations.Type;
 
@@ -20,97 +21,119 @@ public class Event implements IEntity {
 
     @JsonProperty("ID")
     @Id
+    @ApiModelProperty(notes = "String, containing reasonably globally unique identifier. UUID version 4 (random) or 5 (SHA-1) is recommended. As IDs are meant to be used at other mediums, transfer protocols and formats (an example being query string fields in URL), they are allowed to contain only reasonably safe subset of characters. May thus contain only alphanumeric, dot, minus sign and underscore and must not be empty.", required = true)
     @Column(name = "\"IDEVENT\"")
     private String id;
 
     @JsonProperty("AggrID")
     @Type(type = "jsonStringArray")
+    @ApiModelProperty(notes = "Array of aggregated messages identifiers.")
     @Column(name = "\"AGGRID\"")
     private List<String> aggrId = new ArrayList<>();
 
     @JsonProperty("AltNames")
     @Type(type = "jsonStringArray")
+    @ApiModelProperty(notes = "Array of alternative identifiers.")
     @Column(name = "\"ALTNAMES\"")
     private List<String> altnames = new ArrayList<>();
 
     @JsonProperty("ByteCount")
+    @ApiModelProperty(notes = "JSON \"number\" with no fractional and exponential part.")
     @Column(name = "\"BYTECOUNT\"")
     private int byteCount;
 
     @JsonProperty("Category")
     @Type(type = "jsonStringArray")
+    @ApiModelProperty(notes = "Array of event categories.", required = true)
     @Column(name = "\"CATEGORY\"")
     private List<String> category = new ArrayList<>();
 
     @JsonProperty("CeaseTime")
+    @ApiModelProperty(notes = "String, containing timestamp conforming to [[http://tools.ietf.org/html/rfc3339|RFC 3339]].")
     @Column(name = "\"CEASETIME\"")
     private Date ceaseTime;
 
     @JsonProperty("Confidence")
+    @ApiModelProperty(notes = "Confidence of detector in its own reliability of this particular detection. (0 – surely false, 1 – no doubts). If key is not presented, detector does not know (or has no capability to estimate the confidence).")
     @Column(name = "\"CONFIDENCE\"")
     private int confidence;
 
     @JsonProperty("ConnCount")
+    @ApiModelProperty(notes = "JSON \"number\" with no fractional and exponential part.")
     @Column(name = "\"CONNCOUNT\"")
     private int connCount;
 
     @JsonProperty("CorrelID")
     @Type(type = "jsonStringArray")
+    @ApiModelProperty(notes = "Array of correlated messages identifiers.")
     @Column(name = "\"CORRELID\"")
     private List<String> correlId = new ArrayList<>();
 
     @JsonProperty("CreateTime")
+    @ApiModelProperty(notes = "String, containing timestamp conforming to [[http://tools.ietf.org/html/rfc3339|RFC 3339]].")
     @Column(name = "\"CREATETIME\"")
     private Date createTime;
 
     @JsonProperty("Description")
+    @ApiModelProperty(notes = "Short free text human readable description.")
     @Column(name = "\"DESCRIPTION\"")
     private String description;
 
     @JsonProperty("DetectTime")
+    @ApiModelProperty(notes = "String, containing timestamp conforming to [[http://tools.ietf.org/html/rfc3339|RFC 3339]].", required = true)
     @Column(name = "\"DETECTTIME\"")
     private Date detectTime;
 
     @JsonProperty("EventTime")
+    @ApiModelProperty(notes = "String, containing timestamp conforming to [[http://tools.ietf.org/html/rfc3339|RFC 3339]].")
     @Column(name = "\"EVENTTIME\"")
     private Date eventTime;
 
     @JsonProperty("FlowCount")
+    @ApiModelProperty(notes = "JSON \"number\" with no fractional and exponential part.")
     @Column(name = "\"FLOWCOUNT\"")
     private int flowCount;
 
     @JsonProperty("Format")
+    @ApiModelProperty(notes = "Must contain string \"IDEA0\". (Trailing zero denotes draft version, after review/discussion and specification finalisation the name will change.)", required = true)
     @Column(name = "\"FORMAT\"")
     private String format;
 
     @JsonProperty("Note")
+    @ApiModelProperty(notes = "Free text human readable addidional note, possibly longer description of incident if not obvious.")
     @Column(name = "\"NOTE\"")
     private String note;
 
     @JsonProperty("PacketCount")
+    @ApiModelProperty(notes = "JSON \"number\" with no fractional and exponential part.")
     @Column(name = "\"PACKETCOUNT\"")
     private int packetCount;
 
     @JsonProperty("PredID")
     @Type(type = "jsonStringArray")
+    @ApiModelProperty(notes = "Array of obsoleted messages identifiers.")
     @Column(name = "\"PREDID\"")
     private List<String> predId = new ArrayList<>();
 
     @JsonProperty("Ref")
     @Type(type = "jsonStringArray")
+    @ApiModelProperty(notes = "Array of references.")
     @Column(name = "\"REF\"")
     private List<String> ref = new ArrayList<>();
 
     @JsonProperty("RelID")
     @Type(type = "jsonStringArray")
+    @ApiModelProperty(notes = "Array of related messages identifiers.")
     @Column(name = "\"RELID\"")
     private List<String> relId = new ArrayList<>();
 
     @JsonProperty("WinEndTime")
+    @ApiModelProperty(notes = "String, containing timestamp conforming to [[http://tools.ietf.org/html/rfc3339|RFC 3339]].")
     @Column(name = "\"WINENDTIME\"")
     private Date winEndTime;
 
     @JsonProperty("WinStartTime")
+    @ApiModelProperty(notes = "String, containing timestamp conforming to [[http://tools.ietf.org/html/rfc3339|RFC 3339]].")
     @Column(name = "\"WINSTARTTIME\"")
     private Date winStartTime;
 
@@ -133,11 +156,6 @@ public class Event implements IEntity {
     @JsonManagedReference
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     private List<Target> targets = new ArrayList<>();
-
-    public Event() {
-        List<String> s = new ArrayList<>();
-        this.altnames = s;
-    }
 
     public String getId() {
         return id;

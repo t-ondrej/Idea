@@ -34,8 +34,18 @@ public class AttachService implements IAttachService {
     }
 
     @Override
+    public void mergeAll(List<Attach> entities) {
+        attachDao.mergeAll(entities);
+    }
+
+    @Override
     public void remove(Attach entity) {
         attachDao.remove(entity);
+    }
+
+    @Override
+    public void removeById(Long id) {
+        attachDao.removeById(id);
     }
 
     @Override

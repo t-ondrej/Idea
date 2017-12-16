@@ -34,8 +34,18 @@ public class NodeService implements INodeService {
     }
 
     @Override
+    public void mergeAll(List<Node> entities) {
+        nodeDao.mergeAll(entities);
+    }
+
+    @Override
     public void remove(Node entity) {
         nodeDao.remove(entity);
+    }
+
+    @Override
+    public void removeById(Long id) {
+        nodeDao.removeById(id);
     }
 
     @Override

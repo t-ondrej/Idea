@@ -2,6 +2,7 @@ package sk.upjs.ics.entity.impl;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModelProperty;
 import sk.upjs.ics.entity.IEntity;
 import org.hibernate.annotations.Type;
 
@@ -23,6 +24,7 @@ public class Node implements IEntity {
     private Long id;
 
     @JsonProperty("AggrWin")
+    @ApiModelProperty(notes = "String, containing time offset, intended for representing difference between two timestamps. Format is time part of [[http://tools.ietf.org/html/rfc3339|RFC 3339]], optionally prepended by \"D\" or \"d\" separator and number of days (which can have arbitrary number number of digits). \"D\" separator has been chosen to distinguish from internet time, and as a memory aid for \"duration\" or \"days\". For example \"536D10:20:30.5\" means 536 days, 10 hours, 20 seconds, 30.5 seconds, whereas 00:05:00 represents five minutes.")
     @Column(name = "\"AGGRWIN\"")
     private Time aggrWin;
 
@@ -32,20 +34,24 @@ public class Node implements IEntity {
     private Event event;
 
     @JsonProperty("Name")
+    @ApiModelProperty(notes = "Namespaced identifier. Dot separated list of labels, with significance from left to right – leftmost denoting largest containing realm, rightmost denoting single entity. Country – organisation – suborganizations – machine – local scheme akin to \"org.example.csirt.northwest.honeypot.jabberwock\" is strongly recommended. Label case is insignificant, label can contain only letters, numbers or underscore and must not start with number.")
     @Column(name = "\"NAME\"")
     private String name;
 
     @JsonProperty("Note")
+    @ApiModelProperty(notes = "Free text human readable additional description.")
     @Column(name = "\"NOTE\"")
     private String note;
 
     @JsonProperty("SW")
     @Type(type = "jsonStringArray")
+    @ApiModelProperty(notes = "Array of detection software names.")
     @Column(name = "\"SW\"")
     private List<String> sw;
 
     @JsonProperty("Type")
     @Type(type = "jsonStringArray")
+    @ApiModelProperty(notes = "Array of detection node types.")
     @Column(name = "\"TYPE\"")
     private List<String> type = new ArrayList<>();
 

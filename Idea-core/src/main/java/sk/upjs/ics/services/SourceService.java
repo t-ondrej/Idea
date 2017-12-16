@@ -34,8 +34,18 @@ public class SourceService implements ISourceService {
     }
 
     @Override
+    public void mergeAll(List<Source> entities) {
+        sourceDao.mergeAll(entities);
+    }
+
+    @Override
     public void remove(Source entity) {
         sourceDao.remove(entity);
+    }
+
+    @Override
+    public void removeById(Long id) {
+        sourceDao.removeById(id);
     }
 
     @Override
